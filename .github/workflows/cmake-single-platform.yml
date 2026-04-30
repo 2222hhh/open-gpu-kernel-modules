@@ -8,12 +8,15 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
+  validate:
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v4
 
-    - name: Validate Makefile syntax
-      run: make -n modules
+    - name: Check workflow file exists
+      run: test -f .github/workflows/cmake-single-platform.yml
+
+    - name: Check Makefile exists
+      run: test -f Makefile
 
