@@ -1,0 +1,22 @@
+# NVIDIA Linux Open GPU Kernel Modules CI
+name: Build and Test
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Check workflow file exists
+      run: test -f .github/workflows/cmake-single-platform.yml
+
+    - name: Check Makefile exists
+      run: test -f Makefile
+
